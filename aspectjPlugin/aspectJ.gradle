@@ -1,0 +1,11 @@
+apply id:'java'
+
+configurations {
+    ajc
+}
+
+task compileJava(dependsOn: JavaPlugin.PROCESS_RESOURCES_TASK_NAME, overwrite: true) << {
+	configurations.compile.resolve()
+    ant.taskdef( resource:"org/aspectj/tools/ant/taskdefs/aspectjTaskdefs.properties", classpath: configurations.ajc.asPath)
+ 	ant.iajc(source: "1.5", sourceroots:'src', classpath:configurations.compile.asPath)
+}

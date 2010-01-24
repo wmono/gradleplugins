@@ -2,10 +2,24 @@ apply id:'java'
 
 configurations {
     ajc
+	ajInpath
 }
 
 task compileJava(dependsOn: JavaPlugin.PROCESS_RESOURCES_TASK_NAME, overwrite: true) << {
+	
+	configurations.ajc.resolve()
+	configurations.ajInpath.resolve()
 	configurations.compile.resolve()
+
     ant.taskdef( resource:"org/aspectj/tools/ant/taskdefs/aspectjTaskdefs.properties", classpath: configurations.ajc.asPath)
- 	ant.iajc(source: "1.5", sourceroots:'src', classpath:configurations.compile.asPath)
+
+ 	ant.iajc(source: sourceCompatibility, target:targetCompatibility, destDir:sourceSets.main.classesDir.absolutePath, maxmem:"512m", fork:"true", inpath:configurations.ajInpath.asPath, sourceRootCopyFilter:"**/.svn/*,**/*.java", inpathDirCopyFilter:"**/.svn/*,**/*.java,**/*.class", classpath:configurations.compile.asPath){
+		sourceroots{
+				//@TODO issues with non default project layout
+				//sourceSets.main.java.srcDirs.each{
+				//	pathelement(location:it.absolutePath)
+				//}		
+				pathelement(location:"src")
+			}
+	    }
 }

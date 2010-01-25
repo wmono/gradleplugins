@@ -15,11 +15,9 @@ task compileJava(dependsOn: JavaPlugin.PROCESS_RESOURCES_TASK_NAME, overwrite: t
 
  	ant.iajc(source: sourceCompatibility, target:targetCompatibility, destDir:sourceSets.main.classesDir.absolutePath, maxmem:"512m", fork:"true", inpath:configurations.ajInpath.asPath, sourceRootCopyFilter:"**/.svn/*,**/*.java", inpathDirCopyFilter:"**/.svn/*,**/*.java,**/*.class", classpath:configurations.compile.asPath){
 		sourceroots{
-				//@TODO issues with non default project layout
-				//sourceSets.main.java.srcDirs.each{
-				//	pathelement(location:it.absolutePath)
-				//}		
-				pathelement(location:"src")
+				sourceSets.main.java.srcDirs.each{
+					pathelement(location:it.absolutePath)
+				}		
 			}
 	    }
 }

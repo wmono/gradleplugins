@@ -2,11 +2,10 @@ apply id:'java'
 
 configurations {
     ajc
-	ajInpath
+    ajInpath
 }
 
 task compileJava(dependsOn: JavaPlugin.PROCESS_RESOURCES_TASK_NAME, overwrite: true) << {
-	
 	configurations.ajc.resolve()
 	configurations.ajInpath.resolve()
 	configurations.compile.resolve()
@@ -15,9 +14,9 @@ task compileJava(dependsOn: JavaPlugin.PROCESS_RESOURCES_TASK_NAME, overwrite: t
 
  	ant.iajc(source: sourceCompatibility, target:targetCompatibility, destDir:sourceSets.main.classesDir.absolutePath, maxmem:"512m", fork:"true", inpath:configurations.ajInpath.asPath, sourceRootCopyFilter:"**/.svn/*,**/*.java", inpathDirCopyFilter:"**/.svn/*,**/*.java,**/*.class", classpath:configurations.compile.asPath){
 		sourceroots{
-				sourceSets.main.java.srcDirs.each{
-					pathelement(location:it.absolutePath)
-				}		
-			}
-	    }
+			sourceSets.main.java.srcDirs.each{
+				pathelement(location:it.absolutePath)
+			}		
+		}
+	}
 }

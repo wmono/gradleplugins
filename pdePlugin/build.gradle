@@ -1,22 +1,7 @@
 apply id:'groovy'
 
-version=2.0
+version=0.8
 
 dependencies {
  groovy files(org.gradle.util.BootstrapUtil.gradleClasspath)
 }
-
-group="com.thalesgroup.gradle.plugins" 
-org.apache.ivy.util.url.CredentialsStore.INSTANCE.addCredentials(realm, host, user, password)
-
-uploadArchives {
- uploadDescriptor = true
- repositories.add(new org.apache.ivy.plugins.resolver.URLResolver()) {
-     name="Artifactory"
-     url= repositoryURL
-     addArtifactPattern "$url/[organisation]/[artifact]-[revision].[ext]"
-     addIvyPattern "$url/[organisation]/[artifact]-ivy-[revision].xml"       
- }
-  
-}
-

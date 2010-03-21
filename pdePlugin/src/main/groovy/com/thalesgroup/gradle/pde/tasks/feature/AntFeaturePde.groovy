@@ -35,7 +35,7 @@ class AntFeaturePde {
 
     StringBuffer commandLine = new StringBuffer();
     commandLine.append("java -jar ${eclipseLauncher}/plugins/org.eclipse.equinox.launcher_${equinoxLauncherPluginVersion}.jar")
-    commandLine.append(" -application")
+    commandLine.append(" -d32 -application")
     commandLine.append(" org.eclipse.ant.core.antRunner")
     commandLine.append(" -buildfile")
     commandLine.append(" ${eclipseLauncher}/plugins/org.eclipse.pde.build_${pdeBuildPluginVersion}/scripts/build.xml")
@@ -51,6 +51,7 @@ class AntFeaturePde {
             classname: "org.eclipse.equinox.launcher.Main",
             fork: "true",
             failonerror: "true") {
+      arg(value: "d32")
       arg(value: "-application")
       arg(value: "org.eclipse.ant.core.antRunner")
       arg(value: "-buildfile")

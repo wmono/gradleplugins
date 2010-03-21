@@ -16,6 +16,7 @@ configure(featurePde){
 	buildDirectory = "${projectDir}/../../build/work"
 	publishDirectory = "${projectDir}/build"	
 	pluginsSrcDirList = ["${projectDir}/../../plugins"]
+	envConfigs = "/*/*/*"
 	featuresSrcDir = "${projectDir}/../"
 	builderDir = "${projectDir}/../../build"
 	base = "/Users/Rene/workspaces/gradle/github/"
@@ -24,5 +25,5 @@ configure(featurePde){
 	eclipseLocation = "/Users/Rene/workspaces/gradle/github/eclipse"
 	equinoxLauncherPluginVersion = "1.0.200.v20090520"
 	pdeBuildPluginVersion = "3.5.0.v20090527-1800"
-	productName = "/FeatureProduct/FeatureBasedProduct.product"	
+	feature = "/FeatureProduct/FeatureBasedProduct.product"	
 }

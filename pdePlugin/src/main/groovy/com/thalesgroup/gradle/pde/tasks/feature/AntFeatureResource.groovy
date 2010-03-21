@@ -54,8 +54,8 @@ class AntFeatureResource {
     //build.properties
     java.io.InputStream buildPropertiesIs = this.getClass().getResourceAsStream("/feature/build.properties");
     AntUtil.processResource(buildPropertiesIs, fBuilderDir, "build.properties", [new ReplaceElt("gradleFeatureName", featureName),
-            new ReplaceElt("gradleBase", base), new ReplaceElt("gradleBuildDirectory", buildDirectory),
-            new ReplaceElt("gradleConfigs", envConfigs), new ReplaceElt("gradleBuildId", buildId)]);
+            new ReplaceElt("gradleBuildDirectory", buildDirectory),
+            new ReplaceElt("gradleConfigs", envConfigs), new ReplaceElt("gradleBuildId", buildId), new ReplaceElt("gradleBaseLocation", baseLocation)]);
     buildPropertiesIs.close();
 
     //Links directory

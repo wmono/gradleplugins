@@ -40,8 +40,6 @@ public class InitFeatureTask extends CommonTask {
     protected void generate() {
 
         FeaturePdeConvention featurePdeConvention = getFeaturePdeConvention();
-
-        System.out.println(featurePdeConvention);
         new AntPdeInit().execute(
                 featurePdeConvention.getBuildDirectory(),
                 featurePdeConvention.getBuilderDir(),
